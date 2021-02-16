@@ -51,7 +51,6 @@ defmodule CursoElixir do
     concat_strings(tail, suma)
   end
 
-
   def suma(0, sumatoria), do: sumatoria
 
   def suma(numero1, sumatoria \\ 0) when numero1 > 0 do
@@ -193,6 +192,33 @@ defmodule CursoElixir do
 
   def getHead([]), do: 0
 
+  def serie(n) do
+      serie(n,0,1)
+  end
+
+  def serie(n,x,y) do
+      if  n > 0 do
+          IO.puts y
+          serie(n-1,y, x + y)
+      end
+  end
+
+  def rows(num) do
+    rows(num, [[1]])
+  end
+
+  defp rows(1, result), do: Enum.reverse(result)
+
+  defp rows(num, [first | rest]) do
+    new = next_row(first, [1])
+    rows(num - 1, [new, first | rest])
+  end
+
+  defp next_row([value], result), do:  [value | result]
+
+  defp next_row([first, second | rest], result) do
+    next_row([second | rest], [first + second | result])
+  end
 
 
 end
